@@ -59,7 +59,7 @@ function convertColor (decimal) {
   } else if ( decimal > halfway ) {
     output[1] = (decimal-halfway)/(halfway) * 0xFF; // R
     output[0] = 0xFF - output[1]; // G
-  } else {
+  } else if (decimal > soundMin ) {
     output[0] = decimal / halfway * 0xFF; // G
     output[2] = 0xFF - output[0]; // B
   }
