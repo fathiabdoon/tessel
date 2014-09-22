@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/glebec/tessel/issues"
   },
-  "homepage": "https://github.com/glebec/tessel"
+  "homepage": "https://github.com/glebec/tessel",
+  "dependencies": {
+    "ambient-attx4": "^0.2.2",
+    "google-speech-api": "^0.5.0",
+    "neopixels": "0.0.4",
+    "servo-pca9685": "^0.1.3"
+  }
 }
