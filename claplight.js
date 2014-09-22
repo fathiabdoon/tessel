@@ -1,3 +1,6 @@
+// Double-clap to turn on or off;
+// Single-clap to cycle through colors.
+
 'use strict';
 
 // require modules
