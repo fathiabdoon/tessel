@@ -12,7 +12,6 @@ var ambient = ambientlib.use(tessel.port.B);
 var servo1 = 1;
 var position = 0;
 var leds = 16;
-var maxlight =
 var clapdelay = 100;
 
 servo.on('ready', function () {
