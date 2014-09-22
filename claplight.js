@@ -29,21 +29,22 @@ ambient.on('ready', function () {
   ambient.setSoundTrigger(0.1);
 
   ambient.on('sound-trigger', function(data) {
+    // Clear it
+    ambient.clearSoundTrigger();
+
     console.log('Something happened with sound: ', data);
     if (currentColor === color.off) {
       neopixels.animate( leds, Buffer.concat(setAll(leds, color.red)) );
     } else {
       neopixels.animate( leds, Buffer.concat(setAll(leds, color.off)) );
     }
+
+    //After delay reset sound trigger
+    setTimeout(function () {
+      ambient.setSoundTrigger(0.1);
+    }, clapdelay);
   });
 
-  // Clear it
-  ambient.clearSoundTrigger();
-
-  //After delay reset sound trigger
-  setTimeout(function () {
-    ambient.setSoundTrigger(0.1);
-  }, clapdelay);
 });
 
 // error logging
