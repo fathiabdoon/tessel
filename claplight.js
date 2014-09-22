@@ -14,11 +14,13 @@ var leds = 60;
 var clapdelay = 500;
 var color = {
   off: [0x00, 0x00, 0x00],
-  blue: [0x00, 0x00, 0xFF],
   green: [0xFF, 0x00, 0x00],
-  red: [0x00, 0xFF, 0x00]
+  red: [0x00, 0xFF, 0x00],
+  blue: [0x00, 0x00, 0xFF],
+  purple: [0x00, 0xFF, 0xFF],
+  yellow: [0xFF, 0xFF, 0x00],
+  cyan: [0xFF, 0x00, 0xFF]
 };
-var currentColor = color.off;
 var last = Date.now();
 var setColor = color.off;
 
@@ -39,9 +41,30 @@ ambient.on('ready', function () {
 
     // double clap handler to turn on and off
     if ( Date.now() - last < clapdelay ) {
-      setColor = (setColor === color.off) ? color.red : color.off;
+      setColor = (setColor === color.off) ? color.green : color.off;
     } else if (setColor !== color.off) { // single clap for color switching
-      setColor = (setColor === color.red) ? color.green : color.red;
+      switch (setColor) {
+        case color.green:
+          setColor = color.red;
+          break;
+        case color.red:
+          setColor = color.blue;
+          break;
+        case color.blue:
+          setColor = color.yellow;
+          break;
+        case color.yellow:
+          setColor = color.purple;
+          break;
+        case color.purple:
+          setColor = color.cyan;
+          break;
+        case color.cyan:
+          setColor = color.green;
+          break;
+        default:
+          setColor = color.green;
+      }
     }
 
     last = Date.now();
@@ -68,7 +91,6 @@ function setAll (numLEDs, color) {
     buf[i+1] = color[1];
     buf[i+2] = color[2];
   }
-  currentColor = color;
   return [buf];
 }
 
