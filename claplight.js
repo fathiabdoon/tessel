@@ -11,7 +11,7 @@ var neopixels = new Neopixels();
 
 // setting constants
 var leds = 60;
-var clapdelay = 500;
+var clapdelay = 400;
 var color = {
   off: [0x00, 0x00, 0x00],
   green: [0xFF, 0x00, 0x00],
