@@ -1,4 +1,7 @@
+// Maps ambient sound levels to spectrum output on neopixel LEDs.
+// Calibrate to the max ambient level with soundMax:
 'use strict';
+var soundMax = 0.1;
 
 // require modules
 var tessel = require('tessel');
@@ -56,8 +59,7 @@ ambient.on('error', function (err) {
 });
 
 function convertColor (decimal) {
-  var max = 0.1;
-  var halfway = max / 2;
+  var halfway = soundMax / 2;
   var output = [0x00, 0x00, 0x00]; // RGB off
   decimal = decimal > 1 ? 1 : decimal;
   if ( decimal === halfway ) {
