@@ -15,7 +15,6 @@ var neopixels = new Neopixels();
 
 // setting constants
 var leds = 60;
-var triggerDelay = 10;
 var threshold = 0.01;
 var color = {
   off: [0x00, 0x00, 0x00],
@@ -40,18 +39,10 @@ ambient.on('ready', function () {
 
   ambient.on('sound-trigger', function(data) {
     console.log('Tripped sound threshold at level ', data);
-
     var newColor = convertColor(data);
     neopixels.animate( leds, Buffer.concat(setAll(leds, newColor)) );
-
-    // Clear it
-    ambient.clearSoundTrigger();
-
-    //After delay reset sound trigger
-    setTimeout(function () {
-      ambient.setSoundTrigger(threshold);
-    }, triggerDelay);
   });
+
 });
 
 // error logging
